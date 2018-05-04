@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Bank_app;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,26 @@ namespace WpfApp.Pages
         public LoginPage()
         {
             InitializeComponent();
+        }
+
+        private void btnClickLogin(object sender, RoutedEventArgs e)
+        {
+            var database = new BankEntities();
+            var query = database.users.FirstOrDefault(u => u.username == inputUsername.Text);
+            if(query!=null)
+            {
+                if (query.password == inputPassword.Password)
+                    loginMessage.Content = "Succes";
+                else
+                    loginMessage.Content = "Wrong password";
+            }
+            else
+                loginMessage.Content = "Wrong username";
+
+
+
+
+
         }
     }
 }

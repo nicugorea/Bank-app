@@ -16,16 +16,18 @@
             <RowDefinition Height="25"></RowDefinition>
             <RowDefinition Height="25"></RowDefinition>
             <RowDefinition Height="25"></RowDefinition>
+            <RowDefinition Height="25"></RowDefinition>
             <RowDefinition Height="30" ></RowDefinition>
         </Grid.RowDefinitions>
         <Label Grid.Row="0" Content="Register" HorizontalAlignment="Center" FontSize="40" Margin="0 10 0 0"></Label>
-        <Label Grid.Row="1" Content="Username" HorizontalContentAlignment="Center"></Label>
-        <TextBox x:Name="inputUsername" Grid.Row="2" Width="120" Height="20" ></TextBox>
-        <Label Grid.Row="3" Content="Password" HorizontalContentAlignment="Center"></Label>
-        <PasswordBox x:Name="inputPassword" Grid.Row="4" Width="120" Height="20"></PasswordBox>
-        <Label Grid.Row="5" Content="Confirm Password" HorizontalContentAlignment="Center"></Label>
-        <PasswordBox x:Name="inputConfirmPassword" Grid.Row="6" Width="120" Height="20"></PasswordBox>
-        <Button x:Name="btnRegister" Grid.Row="7" Content="Register" Margin="0 10 0 0" Background="{x:Null}" BorderBrush="{x:Null}" Click="btnClickRegister"></Button>
+        <Label Grid.Row="1" Content="" x:Name="registerMessage" HorizontalAlignment="Center"></Label>
+        <Label Grid.Row="2" Content="Username" HorizontalContentAlignment="Center"></Label>
+        <TextBox x:Name="inputUsername" Text="" Grid.Row="3" Width="120" Height="20" ></TextBox>
+        <Label Grid.Row="4" Content="Password" HorizontalContentAlignment="Center"></Label>
+        <PasswordBox x:Name="inputPassword" Password="" Grid.Row="5" Width="120" Height="20"></PasswordBox>
+        <Label Grid.Row="6" Content="Confirm Password" HorizontalContentAlignment="Center"></Label>
+        <PasswordBox x:Name="inputConfirmPassword" Password="" Grid.Row="7" Width="120" Height="20"></PasswordBox>
+        <Button x:Name="btnRegister" Grid.Row="8" Content="Register" Margin="0 10 0 0" Background="{x:Null}" BorderBrush="{x:Null}" Click="btnClickRegister"></Button>
     </Grid>
 
 </Page>

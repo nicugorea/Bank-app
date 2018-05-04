@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Bank_app;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
@@ -28,8 +29,26 @@ namespace WpfApp.Pages
 
         private void btnClickRegister(object sender, RoutedEventArgs e)
         {
-            
-            
+            if(inputConfirmPassword.Password == "" || inputPassword.Password == "" || inputUsername.Text == "")
+            {
+                registerMessage.Content = "Complete all fields";
+            }
+            else if (inputPassword.Password != inputConfirmPassword.Password)
+            {
+                registerMessage.Content = "Passwords are not the same";
+            }
+            else
+            {
+
+                var database = new BankEntities();
+                var newUser = new user();
+                newUser.username = inputUsername.Text;
+                newUser.password = inputPassword.Password;
+                database.users.Add(newUser);
+                database.SaveChangesAsync();
+                registerMessage.Content = "Success";
+
+            }
         }
     }
 }
