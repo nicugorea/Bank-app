@@ -5,8 +5,23 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Bank_app"
         mc:Ignorable="d"
-        Title="ProfileWindow" Height="450" Width="800">
+        Title="ProfileWindow" Height="600" Width="800">
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="9*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="1">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*"></ColumnDefinition>
+                    <ColumnDefinition Width="8*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Frame x:Name="userTab" Grid.Column="0"></Frame>
+                <Frame x:Name="workingFrame" Grid.Column="1"></Frame>
+            </Grid>
+        </Grid>
+            <Frame x:Name="optionsTab" Grid.Row="0"></Frame>
         
     </Grid>
 </Window>

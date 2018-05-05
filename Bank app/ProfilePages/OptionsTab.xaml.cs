@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Bank_app.Profile_Pages
+namespace Bank_app.ProfilePages
 {
     /// <summary>
-    /// Interaction logic for ProfileTab.xaml
+    /// Interaction logic for OptionsTab.xaml
     /// </summary>
-    public partial class ProfileTab : Page
+    public partial class OptionsTab : Page
     {
-        public ProfileTab()
+        public OptionsTab()
         {
             InitializeComponent();
         }
