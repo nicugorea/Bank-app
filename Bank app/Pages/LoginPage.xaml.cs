@@ -21,9 +21,11 @@ namespace WpfApp.Pages
     /// </summary>
     public partial class LoginPage : Page
     {
-        public LoginPage()
+        MainWindow mainWindow = null;
+        public LoginPage(MainWindow _mainWindow)
         {
             InitializeComponent();
+            mainWindow = _mainWindow;
         }
 
         private void btnClickLogin(object sender, RoutedEventArgs e)
@@ -33,7 +35,13 @@ namespace WpfApp.Pages
             if(query!=null)
             {
                 if (query.password == inputPassword.Password)
+                {
                     loginMessage.Content = "Succes";
+                    ProfileWindow profileWindow = new ProfileWindow();
+                    App.Current.MainWindow = profileWindow;
+                    mainWindow.Close();
+                    profileWindow.Show();
+                }
                 else
                     loginMessage.Content = "Wrong password";
             }

@@ -33,7 +33,7 @@ namespace WpfApp.Pages
 
         private void btnClickLoginTab(object sender, RoutedEventArgs e)
         {
-            mainWindow.MainFrame.Content = new LoginPage();
+            mainWindow.MainFrame.Content = new LoginPage(this.mainWindow);
         }
     }
 }

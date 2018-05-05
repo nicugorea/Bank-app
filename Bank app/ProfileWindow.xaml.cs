@@ -10,25 +10,18 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
-using WpfApp.Pages;
 
-namespace WpfApp
+namespace Bank_app
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for ProfileWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class ProfileWindow : Window
     {
-        public MainWindow()
+        public ProfileWindow()
         {
             InitializeComponent();
-            
-            MainTab.Content = new MainTab(this);
-            MainFrame.Content = new LoginPage(this);
-            
         }
-
     }
 }

@@ -12,23 +12,17 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using WpfApp.Pages;
 
-namespace WpfApp
+namespace Bank_app.Profile_Pages
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for ProfileTab.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class ProfileTab : Page
     {
-        public MainWindow()
+        public ProfileTab()
         {
             InitializeComponent();
-            
-            MainTab.Content = new MainTab(this);
-            MainFrame.Content = new LoginPage(this);
-            
         }
-
     }
 }

@@ -10,16 +10,17 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Bank_app.Pages
+namespace Bank_app.Profile_Pages
 {
     /// <summary>
-    /// Interaction logic for UserProfile.xaml
+    /// Interaction logic for ProfileOptions.xaml
     /// </summary>
-    public partial class UserProfile : Window
+    public partial class ProfileOptions : Page
     {
-        public UserProfile()
+        public ProfileOptions()
         {
             InitializeComponent();
         }
