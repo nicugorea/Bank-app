@@ -15,18 +15,36 @@
             <RowDefinition Height="1*"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid Grid.Row="1" VerticalAlignment="Center">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="50*"></ColumnDefinition>
+                <ColumnDefinition Width="50*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
             <Grid.RowDefinitions>
-                <RowDefinition Height="30"></RowDefinition>
-                <RowDefinition Height="30"></RowDefinition>
-                <RowDefinition Height="30"></RowDefinition>
-                <RowDefinition Height="30"></RowDefinition>
+                <RowDefinition Height="25"></RowDefinition>
+                <RowDefinition Height="25"></RowDefinition>
+                <RowDefinition Height="25"></RowDefinition>
+                <RowDefinition Height="25"></RowDefinition>
                 <RowDefinition Height="30"></RowDefinition>
             </Grid.RowDefinitions>
-        <Label Content="Username" FontWeight="Bold" Grid.Row="0"></Label>
-        <Label x:Name="usernameLabel" Grid.Row="1"></Label>
-            <Label Content="ID" Grid.Row="2" FontWeight="Bold"></Label>
-        <Label x:Name="idLabel" Grid.Row="3"></Label>
-        <Button x:Name="logoutButton" Grid.Row="4" Content="Log out" Background="{x:Null}" BorderBrush="{x:Null}"></Button>
+            <!-- Username -->
+            <Label Content="Username" FontWeight="Bold" Grid.Row="0" Grid.Column="0"></Label>
+            <Label x:Name="usernameLabel" Grid.Row="0" Grid.Column="1"></Label>
+            
+            <!-- Id -->
+            <Label Content="ID" Grid.Row="1" Grid.Column="0" FontWeight="Bold"></Label>
+            <Label x:Name="idLabel" Grid.Row="1" Grid.Column="1"></Label>
+            
+            <!-- Name -->
+            <Label Content="Name" FontWeight="Bold" Grid.Row="2" Grid.Column="0"></Label>
+            <Label x:Name="nameLabel" Grid.Row="2" Grid.Column="1"></Label>
+
+            <!-- Surname -->
+            <Label Content="Surname" FontWeight="Bold" Grid.Row="3" Grid.Column="0"></Label>
+            <Label x:Name="surnameLabel" Grid.Row="3" Grid.Column="1"></Label>
+            
+            <!-- Logout -->
+            <Button x:Name="logoutButton" Grid.Row="4" Content="Log out" Background="{x:Null}" BorderBrush="{x:Null}" Click="logoutButton_Click"></Button>
         </Grid>
     </Grid>
 </Page>

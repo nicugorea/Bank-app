@@ -11,7 +11,7 @@ namespace Bank_app
         public ProfileWindow(int _id)
         {
             InitializeComponent();
-            userTab.Content = new UserTab(_id);
+            userTab.Content = new UserTab(_id,this);
             optionsTab.Content = new OptionsTab();
         }
     }
