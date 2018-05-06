@@ -12,7 +12,8 @@ namespace Bank_app
         {
             InitializeComponent();
             userTab.Content = new UserTab(_id,this);
-            optionsTab.Content = new OptionsTab();
+            optionsTab.Content = new OptionsTab(this);
+            workingFrame.Content = new AccountsPage(_id, this);
         }
     }
 }

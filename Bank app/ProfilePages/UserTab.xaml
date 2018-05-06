@@ -25,6 +25,8 @@
                 <RowDefinition Height="25"></RowDefinition>
                 <RowDefinition Height="25"></RowDefinition>
                 <RowDefinition Height="25"></RowDefinition>
+                <RowDefinition Height="25"></RowDefinition>
+                <RowDefinition Height="25"></RowDefinition>
                 <RowDefinition Height="30"></RowDefinition>
             </Grid.RowDefinitions>
             <!-- Username -->
@@ -42,9 +44,13 @@
             <!-- Surname -->
             <Label Content="Surname" FontWeight="Bold" Grid.Row="3" Grid.Column="0"></Label>
             <Label x:Name="surnameLabel" Grid.Row="3" Grid.Column="1"></Label>
+
+            <!-- Surname -->
+            <Label Content="Account ID" FontWeight="Bold" Grid.Row="4" Grid.ColumnSpan="2"></Label>
+            <Label x:Name="accountIdLabel" Grid.Row="5" Grid.ColumnSpan="2"></Label>
             
             <!-- Logout -->
-            <Button x:Name="logoutButton" Grid.Row="4" Content="Log out" Background="{x:Null}" BorderBrush="{x:Null}" Click="logoutButton_Click"></Button>
+            <Button x:Name="logoutButton" Grid.Row="6" Content="Log out" Background="{x:Null}" BorderBrush="{x:Null}" Click="logoutButton_Click"></Button>
         </Grid>
     </Grid>
 </Page>

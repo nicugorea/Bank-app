@@ -20,7 +20,7 @@ namespace Bank_app.ProfilePages
     /// </summary>
     public partial class OptionsTab : Page
     {
-        public OptionsTab()
+        public OptionsTab(ProfileWindow profileWindow)
         {
             InitializeComponent();
         }
