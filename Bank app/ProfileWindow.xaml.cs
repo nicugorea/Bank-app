@@ -8,10 +8,10 @@ namespace Bank_app
     /// </summary>
     public partial class ProfileWindow : Window
     {
-        public ProfileWindow()
+        public ProfileWindow(int _id)
         {
             InitializeComponent();
-            userTab.Content = new UserTab();
+            userTab.Content = new UserTab(_id);
             optionsTab.Content = new OptionsTab();
         }
     }

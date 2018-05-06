@@ -1,18 +1,8 @@
 ﻿using Bank_app;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using Bank_app.Models;
 
 namespace WpfApp.Pages
 {
@@ -37,7 +27,7 @@ namespace WpfApp.Pages
                 if (query.password == inputPassword.Password)
                 {
                     loginMessage.Content = "Succes";
-                    ProfileWindow profileWindow = new ProfileWindow();
+                    ProfileWindow profileWindow = new ProfileWindow(query.id_user);
                     App.Current.MainWindow = profileWindow;
                     mainWindow.Close();
                     profileWindow.Show();

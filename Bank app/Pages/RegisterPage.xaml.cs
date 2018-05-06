@@ -1,19 +1,6 @@
-﻿using Bank_app;
-using System;
-using System.Collections.Generic;
-using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using Bank_app.Models;
 
 namespace WpfApp.Pages
 {
@@ -41,11 +28,15 @@ namespace WpfApp.Pages
             {
 
                 var database = new BankEntities();
-                var newUser = new user();
-                newUser.username = inputUsername.Text;
-                newUser.password = inputPassword.Password;
+                var newUser = new user
+                {
+                    username = inputUsername.Text,
+                    password = inputPassword.Password,
+                    name = inputName.Text,
+                    surname = inputSurname.Text
+                };
                 database.users.Add(newUser);
-                database.SaveChangesAsync();
+                database.SaveChanges();
                 registerMessage.Content = "Success";
 
             }

@@ -7,15 +7,20 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Bank_app
+namespace Bank_app.Models
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class user
+    public partial class payment
     {
-        public int id { get; set; }
-        public string username { get; set; }
-        public string password { get; set; }
+        public int id_payment { get; set; }
+        public int id_sender { get; set; }
+        public int id_reciever { get; set; }
+        public decimal money { get; set; }
+        public System.TimeSpan time { get; set; }
+    
+        public virtual account account { get; set; }
+        public virtual account account1 { get; set; }
     }
 }

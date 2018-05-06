@@ -8,25 +8,54 @@
       Title="RegisterPage">
     <Grid HorizontalAlignment="Center">
         <Grid.RowDefinitions>
-            <RowDefinition Height="100"></RowDefinition>
+            <RowDefinition Height="80"></RowDefinition>
             <RowDefinition Height="25"></RowDefinition>
-            <RowDefinition Height="25"></RowDefinition>
-            <RowDefinition Height="25"></RowDefinition>
-            <RowDefinition Height="25"></RowDefinition>
-            <RowDefinition Height="25"></RowDefinition>
-            <RowDefinition Height="25"></RowDefinition>
-            <RowDefinition Height="25"></RowDefinition>
-            <RowDefinition Height="30" ></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
         </Grid.RowDefinitions>
-        <Label Grid.Row="0" Content="Register" HorizontalAlignment="Center" FontSize="40" Margin="0 10 0 0"></Label>
-        <Label Grid.Row="1" Content="" x:Name="registerMessage" HorizontalAlignment="Center"></Label>
-        <Label Grid.Row="2" Content="Username" HorizontalContentAlignment="Center"></Label>
-        <TextBox x:Name="inputUsername" Text="" Grid.Row="3" Width="120" Height="20" ></TextBox>
-        <Label Grid.Row="4" Content="Password" HorizontalContentAlignment="Center"></Label>
-        <PasswordBox x:Name="inputPassword" Password="" Grid.Row="5" Width="120" Height="20"></PasswordBox>
-        <Label Grid.Row="6" Content="Confirm Password" HorizontalContentAlignment="Center"></Label>
-        <PasswordBox x:Name="inputConfirmPassword" Password="" Grid.Row="7" Width="120" Height="20"></PasswordBox>
-        <Button x:Name="btnRegister" Grid.Row="8" Content="Register" Margin="0 10 0 0" Background="{x:Null}" BorderBrush="{x:Null}" Click="btnClickRegister"></Button>
+        <!-- Register header -->
+        <Label Grid.Row="0" Content="Register" HorizontalAlignment="Center" FontSize="40" Margin="0,10,0,25.2" Grid.ColumnSpan="2" Grid.RowSpan="2"></Label>
+        <!-- Register message -->
+        <Label Grid.Row="1" Content="" x:Name="registerMessage" HorizontalAlignment="Center" Grid.Column="1" Margin="5.6,0.4,71,0.2"></Label>
+        <Grid Grid.Row="2" HorizontalAlignment="Center">
+            <Grid.ColumnDefinitions>
+
+                <ColumnDefinition Width="6*"/>
+                <ColumnDefinition Width="1*"/>
+
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="25"></RowDefinition>
+                <RowDefinition Height="25"></RowDefinition>
+                <RowDefinition Height="25"></RowDefinition>
+                <RowDefinition Height="25"></RowDefinition>
+                <RowDefinition Height="25"></RowDefinition>
+                <RowDefinition Height="30"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <!-- Username label-->
+            <Label Grid.Row="0" Grid.Column="0" Content="Username" ></Label>
+            <!-- Username input -->
+            <TextBox x:Name="inputUsername" Text="" Grid.Row="0" Grid.Column="1" Width="120" Height="20" />
+            <!-- Password label -->
+            <Label Grid.Row="1" Grid.Column="0" Content="Password" ></Label>
+            <!-- Password input -->
+            <PasswordBox x:Name="inputPassword" Password="" Grid.Row="1" Grid.Column="1" Width="120" Height="20"/>
+            <!-- Confirm pass label -->
+            <Label Grid.Row="2" Grid.Column="0" Content="Confirm Password" ></Label>
+            <!-- Confirm pass input -->
+            <PasswordBox x:Name="inputConfirmPassword" Password="" Grid.Row="2" Grid.Column="1" Width="120" Height="20"/>
+            <!-- Name label-->
+            <Label Grid.Row="3" Grid.Column="0" Content="Name" ></Label>
+            <!-- Name input -->
+            <TextBox x:Name="inputName" Text="" Grid.Row="3" Grid.Column="1" Width="120" Height="20" />
+            <!-- Surnname label-->
+            <Label Grid.Row="4" Grid.Column="0" Content="Surname" ></Label>
+            <!-- Surnname input -->
+            <TextBox x:Name="inputSurname" Text="" Grid.Row="4" Grid.Column="1" Width="120" Height="20" />
+            <!-- Register button -->
+            <Button x:Name="btnRegister" Grid.Row="5" Grid.ColumnSpan="2" Content="Register" Background="{x:Null}" BorderBrush="{x:Null}" Click="btnClickRegister"></Button>
+        </Grid>
     </Grid>
 
 </Page>
