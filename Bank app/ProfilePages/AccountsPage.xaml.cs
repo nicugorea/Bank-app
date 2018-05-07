@@ -16,7 +16,7 @@ namespace Bank_app.ProfilePages
         int id = 0;
         int accId = -1;
 
-        public AccountsPage(int _id, ProfileWindow _profileWindow)
+        public AccountsPage(ProfileWindow _profileWindow, int _id)
         {
             InitializeComponent();
             id = _id;
@@ -27,7 +27,7 @@ namespace Bank_app.ProfilePages
 
         void SetTabAccountID(int _id)
         {
-            var newTab = new UserTab(id, profileWindow);
+            var newTab = new UserTab(profileWindow, id);
             if (_id == -1)
                 newTab.accountIdLabel.Content = "Unknown";
             else
@@ -40,7 +40,7 @@ namespace Bank_app.ProfilePages
         {
             var db = new BankEntities();
             var idList = db.accounts.Where(s => s.id_user == id).ToList();
-            
+
             ArrayList accList = new ArrayList();
 
             foreach (account acc in idList)
@@ -76,13 +76,16 @@ namespace Bank_app.ProfilePages
             if (accId != 0)
             {
                 var db = new BankEntities();
-                var toDelete = db.accounts.Find(accId);
+                var idList = db.accounts.Where(s => s.id_user == id).ToList();
+                var toDeleteId = idList[accountList.SelectedIndex].id_account;
+                var toDelete = db.accounts.Find(toDeleteId);
                 if (toDelete != null)
                 {
                     db.accounts.Remove(toDelete);
                     db.SaveChanges();
                     LinkList();
-                    SetTabAccountID(-1);
+                    if (accId == toDeleteId)
+                        SetTabAccountID(-1);
                 }
             }
         }

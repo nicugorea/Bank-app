@@ -13,7 +13,7 @@ namespace Bank_app.ProfilePages
         int id = 0;
         user currentUser = null;
         ProfileWindow profileWindow = null;
-        public UserTab(int _id, ProfileWindow _profileWindow)
+        public UserTab(ProfileWindow _profileWindow, int _id)
         {
             InitializeComponent();
             profileWindow = _profileWindow;
