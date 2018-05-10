@@ -10,15 +10,14 @@ namespace Bank_app.ProfilePages
     /// </summary>
     public partial class UserTab : Page
     {
-        int id = 0;
         user currentUser = null;
         ProfileWindow profileWindow = null;
-        public UserTab(ProfileWindow _profileWindow, int _id)
+        public UserTab(ProfileWindow _profileWindow)
         {
             InitializeComponent();
             profileWindow = _profileWindow;
             var database = new BankEntities();
-            currentUser = database.users.Find(_id);
+            currentUser = database.users.Find(profileWindow.id);
             usernameLabel.Content = currentUser.username;
             idLabel.Content = currentUser.id_user;
             nameLabel.Content = currentUser.name;

@@ -20,19 +20,26 @@ namespace Bank_app.ProfilePages
     /// </summary>
     public partial class OptionsTab : Page
     {
-        int id = 0;
         ProfileWindow profileWindow = null;
-        public OptionsTab(ProfileWindow _profileWindow, int _id)
+        public OptionsTab(ProfileWindow _profileWindow)
         {
             InitializeComponent();
             profileWindow = _profileWindow;
-            id = _id;
         }
 
         private void btnClickMyAccounts(object sender, RoutedEventArgs e)
         {
-            profileWindow.workingFrame.Content = new AccountsPage(profileWindow, id);
+            profileWindow.workingFrame.Content = new AccountsPage(profileWindow);
         }
 
+        private void btnClickPay(object sender, RoutedEventArgs e)
+        {
+            profileWindow.workingFrame.Content = new PayPage(profileWindow);
+        }
+
+        private void btnClickMyPayments(object sender, RoutedEventArgs e)
+        {
+            profileWindow.workingFrame.Content = new PaymentsPage(profileWindow);
+        }
     }
 }

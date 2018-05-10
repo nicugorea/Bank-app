@@ -26,6 +26,7 @@ namespace Bank_app.Models
         }
     
         public virtual DbSet<account> accounts { get; set; }
+        public virtual DbSet<favourite_payment> favourite_payment { get; set; }
         public virtual DbSet<payment> payments { get; set; }
         public virtual DbSet<user> users { get; set; }
     }

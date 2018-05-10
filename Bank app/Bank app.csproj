@@ -81,6 +81,9 @@
     <Compile Include="Models\account.cs">
       <DependentUpon>UserModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\favourite_payment.cs">
+      <DependentUpon>UserModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\payment.cs">
       <DependentUpon>UserModel.tt</DependentUpon>
     </Compile>
@@ -107,6 +110,12 @@
     </Compile>
     <Compile Include="ProfilePages\OptionsTab.xaml.cs">
       <DependentUpon>OptionsTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ProfilePages\PaymentsPage.xaml.cs">
+      <DependentUpon>PaymentsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ProfilePages\PayPage.xaml.cs">
+      <DependentUpon>PayPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="ProfilePages\UserTab.xaml.cs">
       <DependentUpon>UserTab.xaml</DependentUpon>
@@ -143,6 +152,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ProfilePages\OptionsTab.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ProfilePages\PaymentsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ProfilePages\PayPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -196,7 +213,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

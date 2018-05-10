@@ -17,6 +17,7 @@ namespace Bank_app.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public account()
         {
+            this.favourite_payment = new HashSet<favourite_payment>();
             this.payments = new HashSet<payment>();
             this.payments1 = new HashSet<payment>();
         }
@@ -25,6 +26,8 @@ namespace Bank_app.Models
         public int id_user { get; set; }
         public decimal money { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<favourite_payment> favourite_payment { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<payment> payments { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

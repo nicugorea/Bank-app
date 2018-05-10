@@ -8,12 +8,16 @@ namespace Bank_app
     /// </summary>
     public partial class ProfileWindow : Window
     {
+        
+        public int id = 0;
+        public int accountId = -1;
         public ProfileWindow(int _id)
         {
             InitializeComponent();
-            userTab.Content = new UserTab(this, _id);
-            optionsTab.Content = new OptionsTab(this,_id);
-            workingFrame.Content = new AccountsPage(this, _id);
+            id = _id;
+            userTab.Content = new UserTab(this);
+            optionsTab.Content = new OptionsTab(this);
+            workingFrame.Content = new AccountsPage(this);
         }
     }
 }

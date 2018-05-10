@@ -13,6 +13,15 @@
           <Property Name="id_user" Type="int" Nullable="false" />
           <Property Name="money" Type="money" Nullable="false" />
         </EntityType>
+        <EntityType Name="favourite_payment">
+          <Key>
+            <PropertyRef Name="id_fav_pay" />
+          </Key>
+          <Property Name="id_fav_pay" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_account" Type="int" Nullable="false" />
+          <Property Name="id_reciever" Type="int" Nullable="false" />
+          <Property Name="money" Type="money" Nullable="false" />
+        </EntityType>
         <EntityType Name="payments">
           <Key>
             <PropertyRef Name="id_payment" />
@@ -21,7 +30,7 @@
           <Property Name="id_sender" Type="int" Nullable="false" />
           <Property Name="id_reciever" Type="int" Nullable="false" />
           <Property Name="money" Type="money" Nullable="false" />
-          <Property Name="time" Type="time" Precision="7" Nullable="false" />
+          <Property Name="time" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="users">
           <Key>
@@ -33,6 +42,18 @@
           <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="surname" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
+        <Association Name="account_fav_payment">
+          <End Role="accounts" Type="Self.accounts" Multiplicity="1" />
+          <End Role="favourite_payment" Type="Self.favourite_payment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="accounts">
+              <PropertyRef Name="id_account" />
+            </Principal>
+            <Dependent Role="favourite_payment">
+              <PropertyRef Name="id_account" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="payment_account_reciever">
           <End Role="accounts" Type="Self.accounts" Multiplicity="1" />
           <End Role="payments" Type="Self.payments" Multiplicity="*" />
@@ -71,8 +92,13 @@
         </Association>
         <EntityContainer Name="BankModelStoreContainer">
           <EntitySet Name="accounts" EntityType="Self.accounts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="favourite_payment" EntityType="Self.favourite_payment" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="payments" EntityType="Self.payments" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="users" EntityType="Self.users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="account_fav_payment" Association="Self.account_fav_payment">
+            <End Role="accounts" EntitySet="accounts" />
+            <End Role="favourite_payment" EntitySet="favourite_payment" />
+          </AssociationSet>
           <AssociationSet Name="payment_account_reciever" Association="Self.payment_account_reciever">
             <End Role="accounts" EntitySet="accounts" />
             <End Role="payments" EntitySet="payments" />
@@ -98,9 +124,20 @@
           <Property Name="id_account" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="id_user" Type="Int32" Nullable="false" />
           <Property Name="money" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <NavigationProperty Name="favourite_payment" Relationship="Self.account_fav_payment" FromRole="accounts" ToRole="favourite_payment" />
           <NavigationProperty Name="payments" Relationship="Self.payment_account_reciever" FromRole="accounts" ToRole="payments" />
           <NavigationProperty Name="payments1" Relationship="Self.payment_account_sender" FromRole="accounts" ToRole="payments" />
           <NavigationProperty Name="user" Relationship="Self.user_account" FromRole="accounts" ToRole="users" />
+        </EntityType>
+        <EntityType Name="favourite_payment">
+          <Key>
+            <PropertyRef Name="id_fav_pay" />
+          </Key>
+          <Property Name="id_fav_pay" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_account" Type="Int32" Nullable="false" />
+          <Property Name="id_reciever" Type="Int32" Nullable="false" />
+          <Property Name="money" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <NavigationProperty Name="account" Relationship="Self.account_fav_payment" FromRole="favourite_payment" ToRole="accounts" />
         </EntityType>
         <EntityType Name="payment">
           <Key>
@@ -110,7 +147,7 @@
           <Property Name="id_sender" Type="Int32" Nullable="false" />
           <Property Name="id_reciever" Type="Int32" Nullable="false" />
           <Property Name="money" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
-          <Property Name="time" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="time" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="account" Relationship="Self.payment_account_reciever" FromRole="payments" ToRole="accounts" />
           <NavigationProperty Name="account1" Relationship="Self.payment_account_sender" FromRole="payments" ToRole="accounts" />
         </EntityType>
@@ -125,6 +162,18 @@
           <Property Name="surname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="accounts" Relationship="Self.user_account" FromRole="users" ToRole="accounts" />
         </EntityType>
+        <Association Name="account_fav_payment">
+          <End Role="accounts" Type="Self.account" Multiplicity="1" />
+          <End Role="favourite_payment" Type="Self.favourite_payment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="accounts">
+              <PropertyRef Name="id_account" />
+            </Principal>
+            <Dependent Role="favourite_payment">
+              <PropertyRef Name="id_account" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="payment_account_reciever">
           <End Role="accounts" Type="Self.account" Multiplicity="1" />
           <End Role="payments" Type="Self.payment" Multiplicity="*" />
@@ -163,8 +212,13 @@
         </Association>
         <EntityContainer Name="BankEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="accounts" EntityType="Self.account" />
+          <EntitySet Name="favourite_payment" EntityType="Self.favourite_payment" />
           <EntitySet Name="payments" EntityType="Self.payment" />
           <EntitySet Name="users" EntityType="Self.user" />
+          <AssociationSet Name="account_fav_payment" Association="Self.account_fav_payment">
+            <End Role="accounts" EntitySet="accounts" />
+            <End Role="favourite_payment" EntitySet="favourite_payment" />
+          </AssociationSet>
           <AssociationSet Name="payment_account_reciever" Association="Self.payment_account_reciever">
             <End Role="accounts" EntitySet="accounts" />
             <End Role="payments" EntitySet="payments" />
@@ -189,6 +243,16 @@
               <MappingFragment StoreEntitySet="accounts">
                 <ScalarProperty Name="id_account" ColumnName="id_account" />
                 <ScalarProperty Name="id_user" ColumnName="id_user" />
+                <ScalarProperty Name="money" ColumnName="money" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="favourite_payment">
+            <EntityTypeMapping TypeName="BankModel.favourite_payment">
+              <MappingFragment StoreEntitySet="favourite_payment">
+                <ScalarProperty Name="id_fav_pay" ColumnName="id_fav_pay" />
+                <ScalarProperty Name="id_account" ColumnName="id_account" />
+                <ScalarProperty Name="id_reciever" ColumnName="id_reciever" />
                 <ScalarProperty Name="money" ColumnName="money" />
               </MappingFragment>
             </EntityTypeMapping>
