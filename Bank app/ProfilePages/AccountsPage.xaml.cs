@@ -49,6 +49,8 @@ namespace Bank_app.ProfilePages
             }
 
             accountList.ItemsSource = accList.AsParallel();
+            if (idList.Count > 0)
+                profileWindow.SetAccountId(idList[0].id_account);
 
         }
 

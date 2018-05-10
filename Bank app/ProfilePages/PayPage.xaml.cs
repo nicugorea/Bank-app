@@ -21,7 +21,12 @@ namespace Bank_app.ProfilePages
 
         }
 
-        void SetList()
+        private void SetMessage(string _message)
+        {
+            sendMessage.Content = _message;
+        }
+
+        private void SetList()
         {
             var db = new BankEntities();
             int account_id = profileWindow.GetAccountId();
@@ -51,6 +56,8 @@ namespace Bank_app.ProfilePages
 
         private void btnClickSave(object sender, RoutedEventArgs e)
         {
+            if (!IsOkInput())
+                return;
             var db = new BankEntities();
             int accId = 0;
             decimal sum = 0;
@@ -67,70 +74,66 @@ namespace Bank_app.ProfilePages
             SetList();
         }
 
+        private bool IsOkInput()
+        {
+            int accId = -1;
+            decimal sum = -1;
+
+
+            if (!Int32.TryParse(inputAccountId.Text, out accId))
+            {
+                SetMessage("Invalid id");
+                return false;
+            }
+            if (!Decimal.TryParse(inputSum.Text, out sum))
+            {
+                SetMessage("Invalid ammount");
+                return false;
+            }
+
+            var db = new BankEntities();
+            var sender = db.accounts.Find(profileWindow.GetAccountId());
+            var reciever = db.accounts.Find(accId);
+            if(sender.money<sum)
+            {
+                SetMessage("Not enought money");
+                return false;
+            }
+            if (reciever == null)
+            {
+                SetMessage("Reciever id unknown");
+                return false;
+            }
+            return true;
+        }
+
         private void btnClickSend(object sender, RoutedEventArgs e)
         {
+            if (!IsOkInput())
+                return;
+            decimal tmpSum = 0;
+            int recieverId = 0;
+            Int32.TryParse(inputAccountId.Text, out recieverId);
+            Decimal.TryParse(inputSum.Text, out tmpSum);
+            var db = new BankEntities();
+            var currentAccount = db.accounts.Find(profileWindow.GetAccountId());
+            var reciever = db.accounts.Find(recieverId);
 
-            if (inputAccountId.Text != "")
+
+            var newPayment = new payment
             {
-                if (inputSum.Text != "")
-                {
-                    decimal tmpSum = 0;
-                    int recieverId = 0;
-                    Int32.TryParse(inputAccountId.Text, out recieverId);
-                    Decimal.TryParse(inputSum.Text, out tmpSum);
-                    var db = new BankEntities();
-                    var currentAccount = db.accounts.Find(profileWindow.GetAccountId());
-                    var reciever = db.accounts.Find(recieverId);
-                    if (currentAccount != null)
-                    {
+                id_sender = profileWindow.GetAccountId(),
+                id_reciever = recieverId,
+                money = tmpSum,
+                time = DateTime.Now
+            };
+            currentAccount.money -= tmpSum;
+            reciever.money += tmpSum;
+            db.payments.Add(newPayment);
+            db.SaveChanges();
+            sendMessage.Content = "Sent";
 
-                        if (reciever != null)
-                        {
 
-                            if (currentAccount.money - tmpSum >= 0)
-                            {
-                                var newPayment = new payment
-                                {
-                                    id_sender = profileWindow.GetAccountId(),
-                                    id_reciever = recieverId,
-                                    money = tmpSum,
-                                    time = DateTime.Now
-                                };
-                                currentAccount.money -= tmpSum;
-                                reciever.money += tmpSum;
-                                db.payments.Add(newPayment);
-                                db.SaveChanges();
-                                sendMessage.Content = "Success";
-
-                            }
-                            else
-                            {
-                                sendMessage.Content = "Not enought money";
-
-                            }
-                        }
-                        else
-                        {
-                            sendMessage.Content = "Account not selected";
-
-                        }
-                    }
-                    else
-                    {
-                        sendMessage.Content = "Account not found";
-
-                    }
-                }
-                else
-                {
-                    sendMessage.Content = "Sum value is empty";
-
-                }
-            }
-            else
-            {
-                sendMessage.Content = "Account id value is empty";
-            }
         }
     }
 }
