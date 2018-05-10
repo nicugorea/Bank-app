@@ -18,7 +18,7 @@
                     <ColumnDefinition Width="8*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <Frame x:Name="userTab" Grid.Column="0" NavigationUIVisibility="Hidden"></Frame>
-                <Frame x:Name="workingFrame" Grid.Column="1" NavigationUIVisibility="Hidden"></Frame>
+                <Frame x:Name="mainFrame" Grid.Column="1" NavigationUIVisibility="Hidden"></Frame>
             </Grid>
         </Grid>
         <Frame x:Name="optionsTab" Grid.Row="0" NavigationUIVisibility="Hidden"></Frame>

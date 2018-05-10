@@ -24,7 +24,8 @@ namespace Bank_app.ProfilePages
         void SetList()
         {
             var db = new BankEntities();
-            var favList = db.favourite_payment.Where(s => s.id_account == profileWindow.accountId).ToList();
+            int account_id = profileWindow.GetAccountId();
+            var favList = db.favourite_payment.Where(s => s.id_account == account_id).ToList();
             ArrayList payList = new ArrayList();
 
             foreach (favourite_payment paym in favList)
@@ -39,8 +40,10 @@ namespace Bank_app.ProfilePages
 
         private void btnClickSelect(object sender, RoutedEventArgs e)
         {
+
             var db = new BankEntities();
-            var favList = db.favourite_payment.Where(s => s.id_account == profileWindow.accountId).ToList();
+            int account_id = profileWindow.GetAccountId();
+            var favList = db.favourite_payment.Where(s => s.id_account == account_id).ToList();
             var favpay = favList[favouritePayments.SelectedIndex];
             inputAccountId.Text = favpay.id_reciever.ToString();
             inputSum.Text = favpay.money.ToString();
@@ -55,7 +58,7 @@ namespace Bank_app.ProfilePages
             Decimal.TryParse(inputSum.Text, out sum);
             var newSave = new favourite_payment
             {
-                id_account = profileWindow.accountId,
+                id_account = profileWindow.GetAccountId(),
                 id_reciever = accId,
                 money = sum
             };
@@ -76,7 +79,7 @@ namespace Bank_app.ProfilePages
                     Int32.TryParse(inputAccountId.Text, out recieverId);
                     Decimal.TryParse(inputSum.Text, out tmpSum);
                     var db = new BankEntities();
-                    var currentAccount = db.accounts.Find(profileWindow.accountId);
+                    var currentAccount = db.accounts.Find(profileWindow.GetAccountId());
                     var reciever = db.accounts.Find(recieverId);
                     if (currentAccount != null)
                     {
@@ -88,7 +91,7 @@ namespace Bank_app.ProfilePages
                             {
                                 var newPayment = new payment
                                 {
-                                    id_sender = profileWindow.accountId,
+                                    id_sender = profileWindow.GetAccountId(),
                                     id_reciever = recieverId,
                                     money = tmpSum,
                                     time = DateTime.Now

@@ -17,7 +17,7 @@ namespace Bank_app.ProfilePages
             InitializeComponent();
             profileWindow = _profileWindow;
             var database = new BankEntities();
-            currentUser = database.users.Find(profileWindow.id);
+            currentUser = database.users.Find(profileWindow.GetUserId());
             usernameLabel.Content = currentUser.username;
             idLabel.Content = currentUser.id_user;
             nameLabel.Content = currentUser.name;

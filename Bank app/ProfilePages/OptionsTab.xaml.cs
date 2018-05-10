@@ -29,17 +29,17 @@ namespace Bank_app.ProfilePages
 
         private void btnClickMyAccounts(object sender, RoutedEventArgs e)
         {
-            profileWindow.workingFrame.Content = new AccountsPage(profileWindow);
+            profileWindow.SetMainFrame(new AccountsPage(profileWindow));
         }
 
         private void btnClickPay(object sender, RoutedEventArgs e)
         {
-            profileWindow.workingFrame.Content = new PayPage(profileWindow);
+            profileWindow.SetMainFrame(new PayPage(profileWindow));
         }
 
         private void btnClickMyPayments(object sender, RoutedEventArgs e)
         {
-            profileWindow.workingFrame.Content = new PaymentsPage(profileWindow);
+            profileWindow.SetMainFrame(new PaymentsPage(profileWindow));
         }
     }
 }

@@ -12,16 +12,17 @@ namespace Bank_app.ProfilePages
     /// </summary>
     public partial class AccountsPage : Page
     {
-        ProfileWindow profileWindow = null;
+        private ProfileWindow profileWindow = null;
+
         public AccountsPage(ProfileWindow _profileWindow)
         {
             InitializeComponent();
             profileWindow = _profileWindow;
             LinkList();
-            SetTabAccountID(-1);
+            SetTabAccountID(profileWindow.GetAccountId());
         }
 
-        void SetTabAccountID(int _id)
+        private void SetTabAccountID(int _id)
         {
             var newTab = new UserTab(profileWindow);
             if (_id == -1)
@@ -35,7 +36,8 @@ namespace Bank_app.ProfilePages
         private void LinkList()
         {
             var db = new BankEntities();
-            var idList = db.accounts.Where(s => s.id_user == profileWindow.id).ToList();
+            int userId = profileWindow.GetUserId();
+            var idList = db.accounts.Where(s => s.id_user == userId).ToList();
 
             ArrayList accList = new ArrayList();
 
@@ -53,15 +55,16 @@ namespace Bank_app.ProfilePages
         private void btnClickSelect(object sender, System.Windows.RoutedEventArgs e)
         {
             var db = new BankEntities();
-            var idList = db.accounts.Where(s => s.id_user == profileWindow.id).ToList();
-            profileWindow.accountId = idList[accountList.SelectedIndex].id_account;
-            SetTabAccountID(profileWindow.accountId);
+            int user_id = profileWindow.GetUserId();
+            var idList = db.accounts.Where(s => s.id_user == user_id).ToList();
+            profileWindow.SetAccountId(idList[accountList.SelectedIndex].id_account);
+            SetTabAccountID(idList[accountList.SelectedIndex].id_account);
         }
 
         private void btnClickNew(object sender, System.Windows.RoutedEventArgs e)
         {
             var db = new BankEntities();
-            var newAcc = new account { id_user = profileWindow.id, money = 0 };
+            var newAcc = new account { id_user = profileWindow.GetUserId(), money = 0 };
             db.accounts.Add(newAcc);
             db.SaveChanges();
             LinkList();
@@ -69,18 +72,21 @@ namespace Bank_app.ProfilePages
 
         private void btnClickDelete(object sender, System.Windows.RoutedEventArgs e)
         {
-                var db = new BankEntities();
-                var idList = db.accounts.Where(s => s.id_user == profileWindow.id).ToList();
-                var toDeleteId = idList[accountList.SelectedIndex].id_account;
-                var toDelete = db.accounts.Find(toDeleteId);
-                if (toDelete != null)
-                {
-                    db.accounts.Remove(toDelete);
-                    db.SaveChanges();
-                    LinkList();
-                    if (profileWindow.accountId == toDeleteId)
-                        SetTabAccountID(-1);
-                }
+            if (accountList.SelectedIndex == -1)
+                return;
+            var db = new BankEntities();
+            int user_id = profileWindow.GetUserId();
+            var idList = db.accounts.Where(s => s.id_user == user_id).ToList();
+            var toDeleteId = idList[accountList.SelectedIndex].id_account;
+            var toDelete = db.accounts.Find(toDeleteId);
+            if (toDelete != null)
+            {
+                db.accounts.Remove(toDelete);
+                db.SaveChanges();
+                LinkList();
+                if (profileWindow.GetAccountId() == toDeleteId)
+                    SetTabAccountID(-1);
+            }
         }
     }
 }

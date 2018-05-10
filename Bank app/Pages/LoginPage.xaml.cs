@@ -11,37 +11,48 @@ namespace WpfApp.Pages
     /// </summary>
     public partial class LoginPage : Page
     {
-        MainWindow mainWindow = null;
+        private MainWindow mainWindow = null;
+
         public LoginPage(MainWindow _mainWindow)
         {
             InitializeComponent();
             mainWindow = _mainWindow;
         }
 
+        private void SetMessage(string _message)
+        {
+            loginMessage.Content = _message;
+        }
+
+        private void ChangeWindow(user _user)
+        {
+            ProfileWindow profileWindow = new ProfileWindow(_user.id_user);
+            App.Current.MainWindow = profileWindow;
+            mainWindow.Close();
+            profileWindow.Show();
+        }
+
+        private bool IsOkInput(user _user)
+        {
+            if (_user == null)
+            {
+                SetMessage("Wrong Username");
+                return false;
+            }
+            if (_user.password != inputPassword.Password)
+            {
+                SetMessage("Wrong Password");
+                return false;
+            }
+            return true;
+        }
+
         private void btnClickLogin(object sender, RoutedEventArgs e)
         {
             var database = new BankEntities();
             var query = database.users.FirstOrDefault(u => u.username == inputUsername.Text);
-            if(query!=null)
-            {
-                if (query.password == inputPassword.Password)
-                {
-                    loginMessage.Content = "Succes";
-                    ProfileWindow profileWindow = new ProfileWindow(query.id_user);
-                    App.Current.MainWindow = profileWindow;
-                    mainWindow.Close();
-                    profileWindow.Show();
-                }
-                else
-                    loginMessage.Content = "Wrong password";
-            }
-            else
-                loginMessage.Content = "Wrong username";
-
-
-
-
-
+            if (IsOkInput(query))
+                ChangeWindow(query);
         }
     }
 }

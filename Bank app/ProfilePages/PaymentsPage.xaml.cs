@@ -34,10 +34,11 @@ namespace Bank_app.ProfilePages
         List<payment> GetList(string _type)
         {
             var db = new BankEntities();
+            int account_id = profileWindow.GetAccountId();
             if (_type == "reciever")
-                return db.payments.Where(s => s.id_reciever == profileWindow.accountId).ToList();
+                return db.payments.Where(s => s.id_reciever == account_id).ToList();
             else if (_type == "sender")
-                return db.payments.Where(s => s.id_sender == profileWindow.accountId).ToList();
+                return db.payments.Where(s => s.id_sender == account_id).ToList();
             else return null;
         }
 
